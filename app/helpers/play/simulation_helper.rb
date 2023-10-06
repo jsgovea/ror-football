@@ -1,0 +1,2 @@
+module Play::SimulationHelper
+end

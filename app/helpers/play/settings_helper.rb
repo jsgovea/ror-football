@@ -1,0 +1,2 @@
+module Play::SettingsHelper
+end

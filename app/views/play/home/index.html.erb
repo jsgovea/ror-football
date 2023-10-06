@@ -1,0 +1,198 @@
+<div class="mt-10 h-full">
+  <div class="bg-gray-200 rounded-lg mx-4 lg:mx-32" style="padding: 2px;">
+    <div class="relative flex items-center">
+      <!-- tab dividers -->
+      <div class="absolute w-full">
+        <div class="w-1/3 flex justify-between m-auto">
+          <div class="h-3 w-px bg-gray-400 rounded-full opacity-0 transition-opacity duration-100 ease-in-out opacity-100" :class="{ 'opacity-100': selectedTab === 'segment3'}"></div>
+          <div class="h-3 w-px bg-gray-400 rounded-full opacity-0 transition-opacity duration-100 ease-in-out" :class="{ 'opacity-100': selectedTab === 'segment1'}"></div>
+        </div>
+      </div>
+      <!-- white sliding tab block -->
+      <div class="absolute left-0 inset-y-0 w-1/2 flex bg-white transition-all ease-in-out duration-200 transform rounded-md shadow " :class="{'translate-x-0': selectedTab === 'segment1', 'translate-x-full': selectedTab === 'segment2', 'translate-x-fullx2': selectedTab === 'segment3'}"></div>
+      <!-- clickable buttons -->
+      <div class="relative flex-1 flex text-sm font-semibold capitalize items-center justify-center cursor-pointer m-px p-px" @click="selectedTab = 'segment1'">Office</div>
+      <div class="relative flex-1 flex text-sm font-semibold capitalize items-center justify-center cursor-pointer m-px p-px" @click="selectedTab = 'segment2'">Calendar</div>
+    </div>
+  </div>
+
+  <div class="m-4">
+    <p class="mb-3 text-2xl font-semibold leadi">Owner messages or news</p>
+  </div>
+
+  <div class="container p-2 mx-auto rounded-md sm:p-4 dark:text-gray-100 dark:bg-gray-900">
+    <h2 class="mb-3 text-2xl font-semibold leadi">Standings</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-xs">
+        <thead class="rounded-t-lg dark:bg-gray-700">
+          <tr class="text-right">
+            <th title="Ranking" class="p-3 text-left">#</th>
+            <th title="Team name" class="p-3 text-left">Team</th>
+            <th title="Wins" class="p-3">W</th>
+            <th title="Losses" class="p-3">L</th>
+            <th title="Win percentage" class="p-3">Win%</th>
+            <th title="Games behind" class="p-3">GB</th>
+            <th title="Home games" class="p-3">Home</th>
+            <th title="Away games" class="p-3">Away</th>
+            <th title="Last 10 games" class="p-3">L10</th>
+            <th title="Current streak" class="p-3">Streak</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-right border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-800">
+            <td class="px-3 py-2 text-left">
+              <span>1</span>
+            </td>
+            <td class="px-3 py-2 text-left">
+              <span>MIA</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>31</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>17</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>.646</span>
+            </td>
+            <td class="px-3 py-2 text-right">
+              <span>0</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>17-5</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>14-12</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>8-2</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>W2</span>
+            </td>
+          </tr>
+          <tr class="text-right border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-800">
+            <td class="px-3 py-2 text-left">
+              <span>2</span>
+            </td>
+            <td class="px-3 py-2 text-left">
+              <span>CHI</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>30</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>17</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>.638</span>
+            </td>
+            <td class="px-3 py-2 text-right">
+              <span>0.5</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>17-6</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>13-11</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>4-6</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>W2</span>
+            </td>
+          </tr>
+          <tr class="text-right border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-800">
+            <td class="px-3 py-2 text-left">
+              <span>3</span>
+            </td>
+            <td class="px-3 py-2 text-left">
+              <span>CLE</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>30</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>19</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>.612</span>
+            </td>
+            <td class="px-3 py-2 text-right">
+              <span>1.5</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>15-9</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>15-10</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>7-3</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>W3</span>
+            </td>
+          </tr>
+          <tr class="text-right border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-800">
+            <td class="px-3 py-2 text-left">
+              <span>4</span>
+            </td>
+            <td class="px-3 py-2 text-left">
+              <span>BKN</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>29</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>19</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>.604</span>
+            </td>
+            <td class="px-3 py-2 text-right">
+              <span>2</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>12-13</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>17-6</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>4-6</span>
+            </td>
+            <td class="px-3 py-2">
+              <span>L3</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="p-2">
+    <p class="mb-3 text-2xl font-semibold leadi">Best players</p>
+  </div>
+
+  <div class="flex">
+    <div class="flex-1 p-4">
+      <!-- Content for the left div -->
+      <div class="w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-xl">
+        <div class="mt-12">
+          <p class="mt-2 text-center text-2xl font-bold text-gray-500">Circle</p>
+          <p class="my-4 text-center text-sm text-gray-500">Team overall</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1 p-4">
+      <!-- Content for the right div -->
+      <div class="w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-xl">
+        <div class="mt-12">
+          <p class="mt-2 text-center text-2xl font-bold text-gray-500">overall rival</p>
+          <p class="my-4 text-center text-sm text-gray-500">vs team </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

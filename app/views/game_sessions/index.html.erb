@@ -1,0 +1,48 @@
+<section id="login" class="p-4 flex flex-col justify-center h-full max-w-md mx-auto">
+  <div class="p-6 bg-sky-100 rounded">
+    <div class="flex items-center justify-center font-black m-3 mb-12">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mr-3 text-red-600 animate-pulse" viewBox="0 0 20 20"
+        fill="currentColor">
+        <path fill-rule="evenodd"
+          d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+          clip-rule="evenodd" />
+      </svg>
+      <h1 class="tracking-wide text-3xl text-gray-900">Create new game</h1>
+    </div>
+    <form class="flex flex-col justify-center">
+      <div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="country" class="block text-sm font-medium text-gray-700">League</label>
+          <select id="country" name="country" autocomplete="country"
+            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option></option>
+            <option>Liga MX</option>
+            <option>Liga Santander</option>
+          </select>
+        </div>
+      </div>
+      <div class="mt-2">
+        <div class="col-span-6 sm:col-span-3">
+          <label for="country" class="block text-sm font-medium text-gray-700">Team</label>
+          <select id="country" name="country" autocomplete="country"
+            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option></option>
+            <option>America</option>
+            <option>Xolos</option>
+          </select>
+        </div>
+      </div>
+      <!-- <div>
+        <label class="text-sm font-medium">From</label>
+        <input class="mb-3 px-2 py-3
+            mb-3 mt-1 block w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+            focus:outline-none
+            focus:border-sky-500
+            focus:ring-1
+            focus:ring-sky-500
+            focus:invalid:border-red-500 focus:invalid:ring-red-500" type="text" name="username" placeholder="wahyusa">
+      </div> -->
+      <%= link_to "Continue", play_home_index_path, class: "px-4 py-2 mt-4 rounded-md shadow-lg bg-gradient-to-r from-pink-600 to-red-600 font-medium text-gray-100 block transition duration-300 text-center	" %>
+    </form>
+  </div>
+</section>

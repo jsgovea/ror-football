@@ -1,0 +1,31 @@
+countries:
+  - name: "Mexico"
+    flag_emoji: "🇲🇽"
+    capital: "Ciudad de México"
+    population: 126200000
+  - name: "Spain"
+    flag_emoji: "🇲🇽"
+    capital: "Madrid"
+    population: 46660000
+  - name: "England"
+    flag_emoji: "🇲🇽"
+    capital: "London"
+    population: 53010000
+  - name: "Germany"
+    flag_emoji: "🇲🇽"
+    capital: "Berlin"
+    population: 83020000
+
+leagues:
+  - name: "Liga Mexicana"
+    country: "Mexico"
+  - name: "Liga Española"
+    country: "Spain"
+  - name: "Premier League"
+    country: "England"
+  - name: "Bundesliga"
+    country: "Germany"
+
+teams:
+  - name: ""
+    league: ""

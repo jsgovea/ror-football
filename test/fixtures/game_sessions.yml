@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: game_sessions
+#
+#  id               :bigint           not null, primary key
+#  name             :string
+#  current_year     :integer
+#  current_date     :datetime
+#  team_id          :bigint           not null
+#  last_time_played :datetime
+#  user_id          :bigint           not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+one:
+  name: MyString
+  current_year: 1
+  current_date: 2023-10-02 00:44:55
+  team: one
+  last_time_played: 2023-10-02 00:44:55
+  user: one
+
+two:
+  name: MyString
+  current_year: 1
+  current_date: 2023-10-02 00:44:55
+  team: two
+  last_time_played: 2023-10-02 00:44:55
+  user: two

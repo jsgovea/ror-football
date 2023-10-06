@@ -1,0 +1,45 @@
+# == Schema Information
+#
+# Table name: teams
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  league_id  :bigint           not null
+#  prestige   :integer
+#  home_color :string
+#  away_color :string
+#  off_value  :integer
+#  mid_value  :integer
+#  def_value  :integer
+#  abbrev     :string
+#  budget     :integer
+#  overall    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  name: MyString
+  league: one
+  prestige: 1
+  home_color: MyString
+  away_color: MyString
+  off_value: 1
+  mid_value: 1
+  def_value: 1
+  abbrev: MyString
+  budget: 1
+  overall: 1
+
+two:
+  name: MyString
+  league: two
+  prestige: 1
+  home_color: MyString
+  away_color: MyString
+  off_value: 1
+  mid_value: 1
+  def_value: 1
+  abbrev: MyString
+  budget: 1
+  overall: 1

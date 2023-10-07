@@ -19,19 +19,8 @@ class Create::CountriesJob < ApplicationJob
           :population => country['population']
         }
         GlobalsHelper.create_by_yaml(countries_hash)
-
-      # Country.create(
-      #   name: country['name'],
-      #   flag_emoji: country['flag_emoji'],
-      #   capital: country['capital'],
-      #   population: country['population']
-      # )
       Rails.logger.info("Country '#{country['name']}' created!")
     end
   end
-
-  # Perform the leagues creation
-  leagues = yaml_data['leagues']
-
   end
 end

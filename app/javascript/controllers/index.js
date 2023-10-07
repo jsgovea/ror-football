@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import GameSessionController from "./game_session_controller"
+application.register("game-session", GameSessionController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

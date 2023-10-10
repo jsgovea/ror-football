@@ -19,20 +19,11 @@ export default class extends Controller {
 
   changeLeague(e) {
     let leagueSelected = e.target.options[e.target.selectedIndex].value
-
-    const teamsByLeague = this.teamsJson.reduce((accumulator, team) => {
-      if (!accumulator[leagueSelected]) {
-        accumulator[leagueSelected] = [];
-      }
-      accumulator[leagueSelected].push(team);
-      return accumulator;
-    }, {});
-
-    this.updateDropdown(teamsByLeague[leagueSelected])
+    const filteredTeams = this.teamsJson.filter((team) => team['league_id'] === parseInt(leagueSelected, 10));
+    this.updateDropdown(filteredTeams)
   }
 
   updateDropdown(data) {
-    console.log(this.teamSelectTarget);
     this.teamSelectTarget.innerHTML = ""
     data.forEach((team) => {
       const option = document.createElement('option')

@@ -4,15 +4,15 @@ countries:
     capital: "Ciudad de México"
     population: 126200000
   - name: "Spain"
-    flag_emoji: "🇲🇽"
+    flag_emoji: "🇪🇸"
     capital: "Madrid"
     population: 46660000
   - name: "England"
-    flag_emoji: "🇲🇽"
+    flag_emoji: "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
     capital: "London"
     population: 53010000
   - name: "Germany"
-    flag_emoji: "🇲🇽"
+    flag_emoji: "🇩🇪"
     capital: "Berlin"
     population: 83020000
 
@@ -361,5 +361,3 @@ teams:
     abbrev: "FCMX"
     budget: "22000000"
     overall: "74"
-    
-  

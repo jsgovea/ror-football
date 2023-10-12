@@ -14,9 +14,9 @@ Rails.application.routes.draw do
     get 'home/show'
   end
 
-  get 'game_sessions/index'
+  get 'game_sessions', to: 'game_sessions#new'
   get 'game_sessions/show'
-  post 'game_sessions/create', to: 'game_sessions#create'
+  post 'game_sessions', to: 'game_sessions#create'
 
   get 'leagues/index'
   get 'leagues/show'

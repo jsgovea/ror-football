@@ -1,0 +1,132 @@
+# == Schema Information
+#
+# Table name: players
+#
+#  id                 :bigint           not null, primary key
+#  first_name         :string
+#  last_name          :string
+#  age                :integer
+#  position           :string
+#  team_id            :bigint           not null
+#  game_session_id    :bigint           not null
+#  country_id         :bigint           not null
+#  salary             :integer
+#  contract_length    :integer
+#  overall            :integer
+#  potential          :integer
+#  loyalty            :integer
+#  ambition           :integer
+#  ball_control       :integer
+#  dribbling          :integer
+#  long_pass          :integer
+#  short_pass         :integer
+#  heading            :integer
+#  short_power        :integer
+#  finishing          :integer
+#  long_shots         :integer
+#  aggression         :integer
+#  composure          :string
+#  integer            :string
+#  reactions          :integer
+#  acceleration       :integer
+#  stamina            :integer
+#  strength           :integer
+#  sprint_speed       :integer
+#  marking            :integer
+#  tackling           :integer
+#  player_description :string
+#  transfer_value     :integer
+#  jersery_number     :integer
+#  gk_positioning     :integer
+#  gk_diving          :integer
+#  gk_handling        :integer
+#  gk_kicking         :integer
+#  gk_reflexes        :integer
+#  injury_prone       :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+one:
+  first_name: MyString
+  last_name: MyString
+  age: 1
+  position: MyString
+  team: one
+  game_session: one
+  nationality: one
+  salary: 1
+  contract_length: 1
+  overall: 1
+  potential: 1
+  loyalty: 1
+  ambition: 1
+  ball_control: 1
+  dribbling: 1
+  long_pass: 1
+  short_pass: 1
+  heading: 1
+  short_power: 1
+  finishing: 1
+  long_shots: 1
+  aggression: 1
+  composure: MyString
+  integer: MyString
+  reactions: 1
+  acceleration: 1
+  stamina: 1
+  strength: 1
+  sprint_speed: 1
+  marking: 1
+  tackling: 1
+  player_description: MyString
+  transfer_value: 1
+  jersery_number: 1
+  gk_positioning: 1
+  gk_diving: 1
+  gk_handling: 1
+  gk_kicking: 1
+  gk_reflexes: 1
+  injury_prone: 1
+
+two:
+  first_name: MyString
+  last_name: MyString
+  age: 1
+  position: MyString
+  team: two
+  game_session: two
+  nationality: two
+  salary: 1
+  contract_length: 1
+  overall: 1
+  potential: 1
+  loyalty: 1
+  ambition: 1
+  ball_control: 1
+  dribbling: 1
+  long_pass: 1
+  short_pass: 1
+  heading: 1
+  short_power: 1
+  finishing: 1
+  long_shots: 1
+  aggression: 1
+  composure: MyString
+  integer: MyString
+  reactions: 1
+  acceleration: 1
+  stamina: 1
+  strength: 1
+  sprint_speed: 1
+  marking: 1
+  tackling: 1
+  player_description: MyString
+  transfer_value: 1
+  jersery_number: 1
+  gk_positioning: 1
+  gk_diving: 1
+  gk_handling: 1
+  gk_kicking: 1
+  gk_reflexes: 1
+  injury_prone: 1

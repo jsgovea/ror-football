@@ -13,6 +13,6 @@
 #  updated_at       :datetime         not null
 #
 class GameSession < ApplicationRecord
-  belongs_to :team
+  has_many :team
   belongs_to :user
 end

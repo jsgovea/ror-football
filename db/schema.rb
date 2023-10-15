@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_12_064504) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_15_060207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,8 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_064504) do
     t.integer "finishing"
     t.integer "long_shots"
     t.integer "aggression"
-    t.string "composure"
-    t.string "integer"
+    t.integer "composure"
     t.integer "reactions"
     t.integer "acceleration"
     t.integer "stamina"

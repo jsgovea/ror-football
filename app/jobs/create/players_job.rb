@@ -27,23 +27,25 @@ class Create::PlayersJob < ApplicationJob
           new_player.ambition = rand(55..100)
 
           if new_player.position == "Goalkeeper"
-            new_player.gk_positioning = PlayersHelper.generate_skill_value(new_player)
-            new_player.gk_diving = PlayersHelper.generate_skill_value(new_player)
-            new_player.gk_handling = PlayersHelper.generate_skill_value(new_player)
-            new_player.gk_kicking = PlayersHelper.generate_skill_value(new_player)
-            new_player.gk_reflexes = PlayersHelper.generate_skill_value(new_player)
-            new_player.long_pass = PlayersHelper.generate_skill_value(new_player)
-            new_player.short_pass = PlayersHelper.generate_skill_value(new_player)
+            new_player.gk_positioning = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_diving = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_handling = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_kicking = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
           else
-            new_player.ball_control = PlayersHelper.generate_skill_value(new_player)
-            new_player.dribbling = PlayersHelper.generate_skill_value(new_player)
-            new_player.long_pass = PlayersHelper.generate_skill_value(new_player)
-            new_player.short_pass = PlayersHelper.generate_skill_value(new_player)
-            new_player.heading = PlayersHelper.generate_skill_value(new_player)
-            new_player.short_power = PlayersHelper.generate_skill_value(new_player)
-            new_player.finishing = PlayersHelper.generate_skill_value(new_player)
+            new_player.ball_control = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.dribbling = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
+            new_player.gk_reflexes = (rand(55..PlayersHelper.set_random_skill(new_player)) * PlayersHelper.get_league_multiplier(team.league)).to_i
           end
-
 
 
 

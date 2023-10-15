@@ -70,7 +70,7 @@ module PlayersHelper
     # case player.
   end
 
-  def generate_skill_value(player)
+  def self.generate_skill_value(player)
     skill_ranges = {
       "Mexico" => {
         1..2 => 70..83,
@@ -109,20 +109,40 @@ module PlayersHelper
     return skill_value
   end
 
-  def check_value_position(player)
-    case player.position
-    when "Goalkeeper"
-      player.gk_positioning = PlayersHelper.generate_skill_value(player)
-      player.gk_diving = PlayersHelper.generate_skill_value(player)
-      player.gk_handling = PlayersHelper.generate_skill_value(player)
-      player.gk_kicking = PlayersHelper.generate_skill_value(player)
-      player.gk_reflexes = PlayersHelper.generate_skill_value(player)
-      player.long_pass = PlayersHelper.generate_skill_value(player)
-      player.short_pass = PlayersHelper.generate_skill_value(player)
-    when "Defender"
-      player.ball_control = PlayersHelper.generate_skill_value(player)
-      # Example
-      # new_player.ball_control = PlayersHelper.generate_skill_value(new_player)
+
+  def self.set_random_skill(player)
+    country_rate = 0.0
+
+    case player.country.name
+    when "Mexico"
+      country_rate = 65.0
+    when "Spain"
+      country_rate = 80.0
+    when "Germany"
+      country_rate = 85.0
+    when "England"
+      country_rate = 90.0
+    else
+      country_rate = 70.0
     end
+
+    return country_rate
+  end
+
+  def self.league_multiplier(league)
+    league_rate = 0.0
+    prestige = league.prestige
+
+    multiplier = case prestige
+    when 5
+      1.5
+    when 4..Float::INFINITY
+      1.2
+    when -Float::INFINITY..1
+      1.0
+    else
+      1.0
+    end
+
   end
 end

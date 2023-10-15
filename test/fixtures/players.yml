@@ -25,8 +25,7 @@
 #  finishing          :integer
 #  long_shots         :integer
 #  aggression         :integer
-#  composure          :string
-#  integer            :string
+#  composure          :integer
 #  reactions          :integer
 #  acceleration       :integer
 #  stamina            :integer

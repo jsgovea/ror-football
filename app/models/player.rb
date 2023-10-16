@@ -53,125 +53,30 @@ class Player < ApplicationRecord
   POSITIONS = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward']
   validates :position, inclusion: { in: POSITIONS }
 
-  validates :ball_control, inclusion: { in: 55..99 }
-  validates :dribbling, inclusion: { in: 55..99 }
-  validates :long_pass, inclusion: { in: 55..99 }
-  validates :short_pass, inclusion: { in: 55..99 }
-  validates :heading, inclusion: { in: 55..99 }
-  validates :short_power, inclusion: { in: 55..99 }
-  validates :finishing, inclusion: { in: 55..99 }
-  validates :long_shots, inclusion: { in: 55..99 }
-  validates :aggression, inclusion: { in: 55..99 }
-  validates :composure, inclusion: { in: 55..99 }
-  validates :reactions, inclusion: { in: 55..99 }
-  validates :acceleration, inclusion: { in: 55..99 }
-  validates :stamina, inclusion: { in: 55..99 }
-  validates :strength, inclusion: { in: 55..99 }
-  validates :marking, inclusion: { in: 55..99 }
-  validates :tackling, inclusion: { in: 55..99 }
-  validates :gk_positioning, inclusion: { in: 55..99 }
-  validates :gk_diving, inclusion: { in: 55..99 }
-  validates :gk_handling, inclusion: { in: 55..99 }
-  validates :gk_kicking, inclusion: { in: 55..99 }
-  validates :gk_reflexes, inclusion: { in: 55..99 }
-
-  before_validation :adjust_skills_base_position
-
   private
 
   def adjust_skills_base_position
     case position
-    when 'Goalkeeper'
-      self.ball_control = [ball_control, rand(55..70)].min
-      self.dribbling = [dribbling, rand(55..70)].min
-      self.long_pass = [long_pass, rand(55..70)].min
-      self.short_pass = [short_pass, rand(55..70)].min
-      self.heading = [heading, rand(55..70)].min
-      self.short_power = [short_power, rand(55..70)].min
-      self.finishing = [finishing, rand(55..70)].min
-      self.long_shots = [long_shots, rand(55..70)].min
-      self.aggression = [aggression, rand(55..70)].min
-      self.composure = [composure, rand(55..70)].min
-      self.reactions = [reactions, rand(55..70)].min
-      self.acceleration = [acceleration, rand(55..70)].min
-      self.stamina = [stamina, rand(55..70)].min
-      self.strength = [strength, rand(55..70)].min
-      self.marking = [marking, rand(55..70)].min
-      # self.tackling = [tackling, 65].min
-      # self.gk_positioning = [gk_positioning, 65].min
-      # self.gk_diving = [gk_diving, 65].min
-      # self.gk_handling = [gk_handling, 65].min
-      # self.gk_kicking = [gk_kicking, 65].min
-      # self.gk_reflexes = [gk_reflexes, 65].min
     when 'Defender'
-      self.ball_control = [ball_control, rand(55..70)].min
-      self.dribbling = [dribbling, rand(55..70)].min
-      # self.long_pass = [long_pass, rand(55..70)].min
-      # self.short_pass = [short_pass, rand(55..70)].min
-      # self.heading = [heading, rand(55..70)].min
-      self.short_power = [short_power, rand(55..70)].min
-      self.finishing = [finishing, rand(55..70)].min
-      self.long_shots = [long_shots, rand(55..70)].min
-      # self.aggression = [aggression, rand(55..70)].min
-      # self.composure = [composure, rand(55..70)].min
-      # self.reactions = [reactions, rand(55..70)].min
-      # self.acceleration = [acceleration, rand(55..70)].min
-      # self.stamina = [stamina, rand(55..70)].min
-      # self.strength = [strength, rand(55..70)].min
-      # self.marking = [marking, rand(55..70)].min
-      # self.tackling = [tackling, 65].min
-      self.gk_positioning = [gk_positioning, 55].min
-      self.gk_diving = [gk_diving, 55].min
-      self.gk_handling = [gk_handling, 55].min
-      self.gk_kicking = [gk_kicking, 55].min
-      self.gk_reflexes = [gk_reflexes, 55].min
+      self.ball_control = [self.ball_control, 75].min
+      self.dribbling = [self.dribbling, 70].min
+      self.short_power =  [self.short_power, 75].min
+      self.finishing = [self.finishing, 65].min
+      self.long_shots = [self.long_shots, 60].min
+      self.acceleration = [self.acceleration, 70].min
+      self.stamina = [self.stamina, 55].min
     when 'Midfielder'
-      # self.ball_control = [ball_control, rand(55..70)].min
-      # self.dribbling = [dribbling, rand(55..70)].min
-      # self.long_pass = [long_pass, rand(55..70)].min
-      # self.short_pass = [short_pass, rand(55..70)].min
-      # self.heading = [heading, rand(55..70)].min
-      # self.short_power = [short_power, rand(55..70)].min
-      self.finishing = [finishing, rand(55..70)].min
-      self.long_shots = [long_shots, rand(55..70)].min
-      # self.aggression = [aggression, rand(55..70)].min
-      # self.composure = [composure, rand(55..70)].min
-      # self.reactions = [reactions, rand(55..70)].min
-      # self.acceleration = [acceleration, rand(55..70)].min
-      # self.stamina = [stamina, rand(55..70)].min
-      # self.strength = [strength, rand(55..70)].min
-      self.marking = [marking, rand(55..70)].min
-      self.tackling = [tackling, rand(55..70)].min
-      self.gk_positioning = [gk_positioning, 55].min
-      self.gk_diving = [gk_diving, 55].min
-      self.gk_handling = [gk_handling, 55].min
-      self.gk_kicking = [gk_kicking, 55].min
-      self.gk_reflexes = [gk_reflexes, 55].min
+      self.heading = [self.heading, 70].min
+      self.finishing = [self.finishing, 70].min
+      self.stamina = [self.stamina, 55].min
+      self.strength = [self.strength, 75].min
+      self.marking = [self.marking, 75].min
+      self.tackling = [self.tackling, 75].min
     when 'Forward'
-      # self.ball_control = [ball_control, rand(55..70)].min
-      # self.dribbling = [dribbling, rand(55..70)].min
-      self.long_pass = [long_pass, rand(55..70)].min
-      self.short_pass = [short_pass, rand(55..70)].min
-      self.heading = [heading, rand(55..70)].min
-      self.short_power = [short_power, rand(55..70)].min
-      self.finishing = [finishing, rand(55..70)].min
-      # self.long_shots = [long_shots, rand(55..70)].min
-      # self.aggression = [aggression, rand(55..70)].min
-      # self.composure = [composure, rand(55..70)].min
-      # self.reactions = [reactions, rand(55..70)].min
-      # self.acceleration = [acceleration, rand(55..70)].min
-      # self.stamina = [stamina, rand(55..70)].min
-      # self.strength = [strength, rand(55..70)].min
-      self.marking = [marking, rand(55..70)].min
-      self.tackling = [tackling, rand(55..70)].min
-      self.gk_positioning = [gk_positioning, 55].min
-      self.gk_diving = [gk_diving, 55].min
-      self.gk_handling = [gk_handling, 55].min
-      self.gk_kicking = [gk_kicking, 55].min
-      self.gk_reflexes = [gk_reflexes, 55].min
-
-
+      self.long_pass = [self.long_pass, 75].min
+      self.aggression = [self.aggression, 75].min
+      self.marking = [self.marking, 75].min
+      self.tackling = [self.tackling, 65].min
     end
   end
-
 end

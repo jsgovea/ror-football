@@ -65,51 +65,6 @@ module PlayersHelper
     end
   end
 
-  def self.generare_salary(player)
-    salary = 0
-    # case player.
-  end
-
-  def self.generate_skill_value(player)
-    skill_ranges = {
-      "Mexico" => {
-        1..2 => 70..83,
-        3..5 => 55..75,
-        # 6..10 => 55..70,
-      },
-      "Spain" => {
-        1..2 => 80..90,
-        3..5 => 65..85,
-        # 6..10 => 65..80,
-      },
-      "Germany" => {
-        1..2 => 82..92,
-        3..5 => 65..85,
-      },
-      "England" => {
-        1..2 => 80..95,
-        3..5 => 65..85,
-      }
-    }
-
-    skill_range = skill_ranges[player.country.name]
-    # Adjust skill range based on league prestige
-    prestige_multiplier = league_prestige / 10.0
-
-     # Calculate the player's skill value within the adjusted skill range
-    skill_value = skill_range.find { |range, _| range.include?(league_prestige) }
-
-    if skill_value
-      min_skill, max_skill = skill_range[skill_value]
-      skill_value = (min_skill..max_skill).to_a.sample
-    else
-      skill_value = "Prestige out of range"
-    end
-
-    return skill_value
-  end
-
-
   def self.set_random_skill(player)
     country_rate = 0.0
 
@@ -143,6 +98,99 @@ module PlayersHelper
     else
       1.0
     end
+  end
+
+  def self.generare_salary(player)
+    salary = 0
+    # case player.
+  end
+
+  def self.generate_overall(player, country_rate)
+    # TODO: Chage weights for each position
+    weights = {}
+    overall = 0.0
+    weighted_sum = 0
+
+    # if player.position == "Goalkeeper"
+    #   weights = {
+    #     gk_positioning: 0.2,
+    #     gk_diving: 0.2,
+    #     gk_handling: 0.2,
+    #     gk_kicking: 0.2,
+    #     gk_reflexes: 0.2
+    #   }
+    # else
+    #   weights = {
+    #     ball_control: 0.1,
+    #     dribbling: 0.1,
+    #     long_pass: 0.05,
+    #     short_pass: 0.1,
+    #     heading: 0.05,
+    #     short_power: 0.05,
+    #     finishing: 0.1,
+    #     long_shots: 0.05,
+    #     aggression: 0.05,
+    #     composure: 0.05,
+    #     reactions: 0.1,
+    #     acceleration: 0.05,
+    #     stamina: 0.05,
+    #     strength: 0.05,
+    #     sprint_speed: 0.05,
+    #     marking: 0.05,
+    #     tackling: 0.1
+    #   }
+    # end
+
+    if player.position == "Goalkeeper"
+      weights = [
+        1.5, # gkPositioning
+        1.5, # gkDiving
+        1.5, # gkHandling
+        1.5, # gkKicking
+        1.5, # gkReflexes
+      ]
+    else
+      weights = [
+      0.1, # ball_control
+      0.1, # dribbling
+      0.05, # long_pass
+      0.1, # short_pass
+      0.05, # heading
+      0.05, # short_power
+      0.1, # finishing
+      0.05, # long_shots
+      0.05, # aggression
+      0.05, # composure
+      0.1, # reactions
+      0.05, # acceleration
+      0.05, # stamina
+      0.05, # strength
+      0.05, # sprint_speed
+      0.05, # marking
+      0.1 # tackling
+      ]
+    end
+
+    if player.position == "Goalkeeper"
+      weighted_sum = weights.zip([
+        player.gk_positioning, player.gk_diving, player.gk_handling, player.gk_kicking, player.gk_reflexes
+      ]).map { |(weight, skill_value)|
+        skill_value.nil? ? 0 : weight * skill_value.to_i
+      }.sum
+    else
+      weighted_sum = weights.zip([
+        player.ball_control, player.dribbling, player.long_pass, player.short_pass, player.heading, player.short_power,
+        player.finishing, player.long_shots, player.aggression, player.composure, player.reactions, player.acceleration,
+        player.stamina, player.strength, player.sprint_speed, player.marking, player.tackling
+      ]).map { |(weight, skill_value)|
+        weight * skill_value.to_i
+      }.sum
+    end
+
+    overall_rating = weighted_sum / weights.size
+
+    return overall_rating = [ [overall_rating, country_rate].min, rand(55..75)].max
 
   end
+
 end

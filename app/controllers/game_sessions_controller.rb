@@ -13,6 +13,7 @@ class GameSessionsController < ApplicationController
 
   # Show all game sessions
   def show
+    @my_game_sessions = GameSession.where(user_id: current_user.id)
   end
 
   # Create a new game session

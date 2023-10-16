@@ -100,11 +100,6 @@ module PlayersHelper
     end
   end
 
-  def self.generare_salary(player)
-    salary = 0
-    # case player.
-  end
-
   def self.generate_overall(player, country_rate)
     # TODO: Chage weights for each position
     weights = {}
@@ -191,6 +186,55 @@ module PlayersHelper
 
     return overall_rating = [ [overall_rating, country_rate].min, rand(55..75)].max
 
+  end
+
+  def self.generare_salary(player, league)
+    salary = 0
+    salary = player.overall * self.league_multiplier(league) * self.set_random_skill(player) * 1000 * 0.1
+    return salary.round
+  end
+
+  def self.overall_multiplier(overall)
+    if overall >= 90
+      return 1.2
+    elsif overall >= 80
+      return 1.1
+    elsif overall >= 70
+      return 1.0
+    elsif overall >= 60
+      return 0.9
+    else
+      return 0.8
+    end
+  end
+
+  def self.get_nationality_multiplier(player)
+    case player.country.name
+    when "Mexico"
+      rand(1.0..1.3)
+    when "Spain"
+      rand(1.0..1.4)
+    when "Germany"
+      rand(1.0..1.5)
+    when "England"
+      rand(1.0..1.6)
+    else
+      1.0
+    end
+  end
+
+  def self.generate_potential(player, team)
+    nationality_weight = 0.7
+    league_weight = 0.3
+    nationality_multiplier = get_nationality_multiplier(player)
+    league_multiplier = league_multiplier(team.league)
+    country_rate = set_random_skill(player)
+
+    potential = (
+      (nationality_multiplier * nationality_weight) +
+      (league_multiplier * league_weight)
+    ) * player.overall
+    return potential.round
   end
 
 end

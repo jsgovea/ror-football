@@ -51,6 +51,9 @@ class Create::PlayersJob < ApplicationJob
           end
 
           new_player.overall = PlayersHelper.generate_overall(new_player, PlayersHelper.set_random_skill(new_player))
+          new_player.salary = PlayersHelper.generare_salary(new_player, team.league)
+          new_player.potential = PlayersHelper.generate_potential(new_player, team)
+
 
           if new_player.save
             puts "Player created"

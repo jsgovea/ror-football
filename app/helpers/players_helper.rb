@@ -237,4 +237,42 @@ module PlayersHelper
     return potential.round
   end
 
+  def self.calculate_salary(player, team)
+    nationality_multiplier = get_nationality_multiplier(player)
+    league_multiplier = league_multiplier(team.league)
+    base_salary = 50000
+    salary = base_salary
+    nationality_weight = 0.2
+    overall_weight = 0.3
+    potential_weight = 0.2
+    league_prestige_weight = 0.3
+
+    salary = base_salary +
+    base_salary * nationality_multiplier * nationality_weight +
+    base_salary * (player.overall / 100.0) * overall_weight +
+    base_salary * (player.potential / 100.0) * potential_weight +
+    base_salary * (league_multiplier / 100.0) * league_prestige_weight
+
+    return salary.round
+  end
+
+  def self.calculate_transfer_value(player)
+    base_value = 10_000_00
+
+    case player.country.name
+    when "Mexico"
+      base_value *= 2
+    when "Spain"
+      base_value *= 7
+    when "Germany"
+      base_value *= 8
+    when "England"
+      base_value *= 10
+    end
+
+    value = base_value * (player.overall + player.potential) / 200
+    value = [value, 10_000_000].max
+    return value
+  end
+
 end

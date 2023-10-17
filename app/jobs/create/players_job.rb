@@ -4,7 +4,7 @@ class Create::PlayersJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    teams = Team.limit(2)
+    teams = Team.all
     # Check player per teams
     teams.each do |team|
       players_by_team = Player.where(team_id: team.id)
@@ -53,7 +53,8 @@ class Create::PlayersJob < ApplicationJob
           new_player.overall = PlayersHelper.generate_overall(new_player, PlayersHelper.set_random_skill(new_player))
           new_player.salary = PlayersHelper.generare_salary(new_player, team.league)
           new_player.potential = PlayersHelper.generate_potential(new_player, team)
-
+          new_player.salary = PlayersHelper.calculate_salary(new_player, team)
+          new_player.transfer_value = PlayersHelper.calculate_transfer_value(new_player)
 
           if new_player.save
             puts "Player created"

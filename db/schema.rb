@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_15_060207) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_17_040810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_15_060207) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_leagues_on_country_id"
+  end
+
+  create_table "match_stats", force: :cascade do |t|
+    t.bigint "match_id", null: false
+    t.string "shots"
+    t.string "shots_on_target"
+    t.string "possession"
+    t.string "pass_accuracy"
+    t.string "fouls"
+    t.string "yellow_cards"
+    t.string "red_cards"
+    t.string "offsides"
+    t.string "corners"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_match_stats_on_match_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "week"
+    t.bigint "home_team_id", null: false
+    t.bigint "away_team_id", null: false
+    t.string "result"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["away_team_id"], name: "index_matches_on_away_team_id"
+    t.index ["home_team_id"], name: "index_matches_on_home_team_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -93,6 +121,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_15_060207) do
     t.index ["team_id"], name: "index_players_on_team_id"
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.bigint "game_session_id", null: false
+    t.integer "season"
+    t.bigint "matches_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_session_id"], name: "index_schedules_on_game_session_id"
+    t.index ["matches_id"], name: "index_schedules_on_matches_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.bigint "league_id", null: false
@@ -125,8 +163,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_15_060207) do
   add_foreign_key "game_sessions", "teams"
   add_foreign_key "game_sessions", "users"
   add_foreign_key "leagues", "countries"
+  add_foreign_key "match_stats", "matches"
+  add_foreign_key "matches", "teams", column: "away_team_id"
+  add_foreign_key "matches", "teams", column: "home_team_id"
   add_foreign_key "players", "countries"
   add_foreign_key "players", "game_sessions"
   add_foreign_key "players", "teams"
+  add_foreign_key "schedules", "game_sessions"
+  add_foreign_key "schedules", "matches", column: "matches_id"
   add_foreign_key "teams", "leagues"
 end

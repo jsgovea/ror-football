@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  week: 1
+  home_team: one
+  away_team: one
+  result: MyString
+  date: 2023-10-16 19:22:41
+
+two:
+  week: 1
+  home_team: two
+  away_team: two
+  result: MyString
+  date: 2023-10-16 19:22:41

@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match: one
+  shots: MyString
+  shots_on_target: MyString
+  possession: MyString
+  pass_accuracy: MyString
+  fouls: MyString
+  yellow_cards: MyString
+  red_cards: MyString
+  offsides: MyString
+  corners: MyString
+
+two:
+  match: two
+  shots: MyString
+  shots_on_target: MyString
+  possession: MyString
+  pass_accuracy: MyString
+  fouls: MyString
+  yellow_cards: MyString
+  red_cards: MyString
+  offsides: MyString
+  corners: MyString

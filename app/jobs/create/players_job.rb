@@ -8,11 +8,12 @@ class Create::PlayersJob < ApplicationJob
     # Check player per teams
     teams.each do |team|
       players_by_team = Player.where(team_id: team.id)
-      if players_by_team.count < 26
+      if players_by_team.count <= 25
         # Take down the current players and loop through the rest
         # In theory, the number of players should be 0
         25.times do
-          full_name, country = generate_names(team.league.country.name)
+          full_name, country = PlayersHelper.generate_names(team.league.country.name)
+          puts "Full name: #{full_name}"
           new_player = Player.new
           new_player.age = rand(18..35)
           new_player.team_id = team.id
@@ -64,56 +65,7 @@ class Create::PlayersJob < ApplicationJob
         end
       end
     end
+
+    Create::MatchesJob.perform_now(args[0].id)
   end
-
-    # Generate player names, nationality and assign to teams
-    def generate_names(country)
-      mexican_probability = 0
-      spanish_probability = 0
-      german_probability = 0
-      english_probability = 0
-      countries = ["Mexico", "Spain", "Germany", "England"]
-
-      case country
-      when "Mexico"
-        mexican_probability = 0.9
-        spanish_probability = 0.0333
-        german_probability = 0.0333
-        english_probability = 0.0333
-      when "Spain"
-        mexican_probability = 0.0333
-        spanish_probability = 0.9
-        german_probability = 0.0333
-        english_probability = 0.0333
-      when "Germany"
-        mexican_probability = 0.0333
-        spanish_probability = 0.0333
-        german_probability = 0.9
-        english_probability = 0.0333
-      when "England"
-        mexican_probability = 0.0333
-        spanish_probability = 0.0333
-        german_probability = 0.0333
-        english_probability = 0.9
-      end
-
-      countries_probability = [mexican_probability, spanish_probability, german_probability, english_probability]
-      random_number = rand
-      selected_country = nil
-      cumulative_probability = 0.0
-      countries.each_with_index do |country, index|
-        cumulative_probability += countries_probability[index]
-        if random_number < cumulative_probability
-          selected_country = country
-          break
-        end
-      end
-
-      full_name = PlayersHelper.generate_full_name(selected_country)
-      return full_name, selected_country
-    end
-
-      # Generate jerser numbers
-      # Generate player overall
-      # Generate player potential
   end

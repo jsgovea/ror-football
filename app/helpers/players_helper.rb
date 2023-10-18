@@ -1,4 +1,51 @@
 module PlayersHelper
+
+  def self.generate_names(country)
+    mexican_probability = 0
+    spanish_probability = 0
+    german_probability = 0
+    english_probability = 0
+    countries = ["Mexico", "Spain", "Germany", "England"]
+
+    case country
+    when "Mexico"
+      mexican_probability = 0.9
+      spanish_probability = 0.0333
+      german_probability = 0.0333
+      english_probability = 0.0333
+    when "Spain"
+      mexican_probability = 0.0333
+      spanish_probability = 0.9
+      german_probability = 0.0333
+      english_probability = 0.0333
+    when "Germany"
+      mexican_probability = 0.0333
+      spanish_probability = 0.0333
+      german_probability = 0.9
+      english_probability = 0.0333
+    when "England"
+      mexican_probability = 0.0333
+      spanish_probability = 0.0333
+      german_probability = 0.0333
+      english_probability = 0.9
+    end
+
+    countries_probability = [mexican_probability, spanish_probability, german_probability, english_probability]
+    random_number = rand
+    selected_country = nil
+    cumulative_probability = 0.0
+    countries.each_with_index do |country, index|
+      cumulative_probability += countries_probability[index]
+      if random_number < cumulative_probability
+        selected_country = country
+        break
+      end
+    end
+
+    full_name = generate_full_name(selected_country)
+    return full_name, selected_country
+  end
+
   def self.generate_full_name(country)
     yaml_data = YAML.load_file("#{Rails.root}/db/seeds/names.yml")
     spanish_first_name = yaml_data['personal_spanish_names']

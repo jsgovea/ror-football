@@ -2,10 +2,10 @@ class Create::MatchesJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    mexican_matches = []
-    spanish_matches = []
+    mexican_match_ids = []
+    spanish_match_ids = []
     puts "Game session id: #{args[0]}"
-    game_session = args[0]
+    game_session = args[0].id
     mexican_teams = Team.joins(:league).where(leagues: { name: "Liga Mexicana" })
     spanish_teams = Team.joins(:league).where(leagues: { name: "Liga Española" })
     # germans_teams = Team.joins(:league).where(leagues: { name: "Mexico" })
@@ -29,37 +29,40 @@ class Create::MatchesJob < ApplicationJob
 
         if match.valid?
           match.save
-          mexican_matches << match.id
+          mexican_match_ids << match.id
         else
           puts "Invalid match: #{match.errors.full_messages.join(', ')}"
         end
       end
     end
 
-    spanish_matches.each do |match_attributes|
-      unless match_attributes[:home_team].nil? && match_attributes[:away_team].nil?
-        match = Match.new
-        match.week = match_attributes[:week]
-        match.home_team = match_attributes[:home_team]
-        match.away_team = match_attributes[:away_team]
-        match.result = 'Not played'
-        match.date = match_attributes[:date]
-        match.schedule = schedule
+    # spanish_schedule.each do |match_attributes|
+    #   unless match_attributes[:home_team].nil? && match_attributes[:away_team].nil?
+    #     match = Match.new
+    #     match.week = match_attributes[:week]
+    #     match.home_team = match_attributes[:home_team]
+    #     match.away_team = match_attributes[:away_team]
+    #     match.result = 'Not played'
+    #     match.date = match_attributes[:date]
+    #     match.schedule = schedule
 
-        if match.valid?
-          match.save
-          spanish_matches << match.id
-        else
-          puts "Invalid match: #{match.errors.full_messages.join(', ')}"
-        end
-      end
-    end
+    #     if match.valid?
+    #       match.save
+    #       spanish_match_ids << match.id
+    #     else
+    #       puts "Invalid match: #{match.errors.full_messages.join(', ')}"
+    #     end
+    #   end
+    # end
 
-    schedule.matches = mexican_matches + spanish_matches
+    puts "Mexican matches: #{mexican_match_ids}"
+
+    schedule.matches << mexican_match_ids
 
     if schedule.valid?
-      puts "Schedule updated #{schedule}"
       schedule.save
+      puts "Schedule saved #{schedule.matches.count}"
+      puts "Schedule matches #{schedule.matches}"
     else
       puts "Invalid schedule: #{schedule.errors.full_messages.join(', ')}"
     end

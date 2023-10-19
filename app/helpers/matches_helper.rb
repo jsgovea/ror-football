@@ -14,15 +14,17 @@ module MatchesHelper
         home_team = shuffled_teams.shift
         away_team = shuffled_teams.pop
 
-        home_match = {
-          week: current_week,
-          home_team: home_team,
-          away_team: away_team,
-          result: 'Not played',
-          date: get_next_saturday(current_week)
-        }
+        if home_team && away_team
+          home_match = {
+            week: current_week,
+            home_team: home_team,
+            away_team: away_team,
+            result: 'Not played',
+            date: get_next_saturday(current_week)
+          }
+          schedule << home_match
+        end
 
-        schedule << home_match
       end
     end
 
@@ -31,6 +33,7 @@ module MatchesHelper
         home_team = schedule[(current_week - 1) * matches_per_week + i][:away_team]
         away_team = schedule[(current_week - 1) * matches_per_week + i][:home_team]
 
+        if home_team && away_team
         away_match = {
           week: current_week,
           home_team: home_team,
@@ -40,6 +43,7 @@ module MatchesHelper
         }
 
         schedule << away_match
+      end
       end
     end
 
@@ -54,5 +58,4 @@ module MatchesHelper
     days_to_add = (current_week - 1) * 7
     current_date + days_to_add.days
   end
-
 end

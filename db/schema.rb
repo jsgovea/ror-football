@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_17_040810) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_19_055135) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,8 +70,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_17_040810) do
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "schedule_id", null: false
     t.index ["away_team_id"], name: "index_matches_on_away_team_id"
     t.index ["home_team_id"], name: "index_matches_on_home_team_id"
+    t.index ["schedule_id"], name: "index_matches_on_schedule_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -124,7 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_17_040810) do
   create_table "schedules", force: :cascade do |t|
     t.bigint "game_session_id", null: false
     t.integer "season"
-    t.bigint "matches_id", null: false
+    t.bigint "matches_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_session_id"], name: "index_schedules_on_game_session_id"
@@ -164,6 +166,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_17_040810) do
   add_foreign_key "game_sessions", "users"
   add_foreign_key "leagues", "countries"
   add_foreign_key "match_stats", "matches"
+  add_foreign_key "matches", "schedules"
   add_foreign_key "matches", "teams", column: "away_team_id"
   add_foreign_key "matches", "teams", column: "home_team_id"
   add_foreign_key "players", "countries"

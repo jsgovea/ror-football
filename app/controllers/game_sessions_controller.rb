@@ -22,8 +22,8 @@ class GameSessionsController < ApplicationController
     @game_session = GameSession.new(session_params)
 
     if @game_session.save
-      # Create::PlayersJob.perform_now(@game_session)
-      Create::MatchesJob.perform_now(@game_session)
+      Create::PlayersJob.perform_now(@game_session)
+      # Create::MatchesJob.perform_now(@game_session)
       puts "Game session created"
       redirect_to play_home_index_path, notice: 'Game session was successfully created.'
     else

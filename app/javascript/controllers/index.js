@@ -9,3 +9,6 @@ application.register("game-session", GameSessionController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import SimulationController from "./simulation_controller"
+application.register("simulation", SimulationController)

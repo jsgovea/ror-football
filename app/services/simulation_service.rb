@@ -1,8 +1,11 @@
-module Play
   class SimulationService
-    def start_game(match_id)
-      match = Match.find(match_id)
-      total_time = 90 * 60
+    def start_game(match_data)
+      # ActionCable.server.broadcast('simulation_channel', {body: @message})
+
+      # match = Match.find(match_id)
+      total_time = 90 + rand(0..5)
+      puts "Starting the game #{total_time}"
+
       match_stats = {
         shots: [0, 0],
         shots_on_target: [0, 0],
@@ -16,20 +19,23 @@ module Play
       }
 
       current_time = 0
-      while current_time < total_time
-        simulate_events(match_stats, match.home_team, match.away_team)
+      while current_time <= total_time
+        puts "Current minute: #{current_time}"
+        # simulate_events(match_stats, match.home_team, match.away_team)
         current_time += 1
       end
 
+      puts "Match stats: #{match_data}"
       match_stats
     end
 
     # Test function
     # TODO: Remove this function
-    def simulate_events(match_stats, team1, team2)
+    def simulate_events(match_stats, home_team, away_team)
       # Change per player.each skill
       team1_players = team1.players
       team2_players = team2.players
+
       # Calculate the event probabilities based on player skills
       team1_offensive_strength = team1_players.map { |player| player.skills }.sum
       team2_offensive_strength = team2_players.map { |player| player.skills }.sum
@@ -101,4 +107,3 @@ module Play
     def generate_result
     end
   end
-end

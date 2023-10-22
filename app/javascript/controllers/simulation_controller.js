@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import consumer from '../channels/consumer'
+import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="simulation"
 export default class extends Controller {
@@ -7,11 +8,7 @@ export default class extends Controller {
   static targets = ["updates", "input", "messages"]
 
   connect() {
-    this.channel = consumer.subscriptions.create("SimulationChannel", {
-      connected: this._cableConnected.bind(this),
-      disconnected: this._cableDisconnected.bind(this),
-      received: this._cableReceived.bind(this)
-    })
+      createConsumer().subscriptions.create({channel: 'SimulationChannel', room: '17303'})
   }
 
   clearInput() {

@@ -1,6 +1,6 @@
 class SimulationChannel < ApplicationCable::Channel
   def subscribed
-    stream_from 'simulation_channel'
+    stream_from 'match_17303'
   end
 
   def unsubscribed
@@ -9,9 +9,8 @@ class SimulationChannel < ApplicationCable::Channel
   end
 
   def update_stats(data)
-    match = Match.find(data['match_id'])
-    match.update_attributes(data['match'])
-    ActionCable.server.broadcast "match_channel", match: match
-
+    # match = Match.find(data['match_id'])
+    # match.update_attributes(data['match'])
+    # ActionCable.server.broadcast "match_channel", match: match
   end
 end

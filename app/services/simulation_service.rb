@@ -2,9 +2,7 @@
     def start_game(match_data)
       # ActionCable.server.broadcast('simulation_channel', {body: @message})
 
-      # match = Match.find(match_id)
       total_time = 90 + rand(0..5)
-      puts "Starting the game #{total_time}"
 
       match_stats = {
         shots: [0, 0],
@@ -21,52 +19,61 @@
       current_time = 0
       while current_time <= total_time
         puts "Current minute: #{current_time}"
-        # simulate_events(match_stats, match.home_team, match.away_team)
+        simulate_events(match_data)
         current_time += 1
       end
 
-      puts "Match stats: #{match_data}"
       match_stats
     end
 
     # Test function
     # TODO: Remove this function
-    def simulate_events(match_stats, home_team, away_team)
+    def simulate_events(match_data)
+      # Get all players for each team
+      home_team_players = []
+      away_team_players = []
+      home_players = Player.where(team_id: match_data.first.home_team_id)
+      away_players = Player.where(team_id: match_data.first.away_team_id)
+      home_team_players << home_players
+      away_team_players << away_players
+
+
+
       # Change per player.each skill
-      team1_players = team1.players
-      team2_players = team2.players
+      # team1_players = team1.players
+      # team2_players = team2.players
 
       # Calculate the event probabilities based on player skills
-      team1_offensive_strength = team1_players.map { |player| player.skills }.sum
-      team2_offensive_strength = team2_players.map { |player| player.skills }.sum
+      # team1_offensive_strength = team1_players.map { |player| player.skills }.sum
+      # team2_offensive_strength = team2_players.map { |player| player.skills }.sum
 
       # Define event probabilities for each event
       # TODO: Pass to individual event simulation functions
-      shot_probability_team1 = (team1_offensive_strength - team2_offensive_strength) / 100.0
-      shot_probability_team2 = (team2_offensive_strength - team1_offensive_strength) / 100.0
+      # shot_probability_team1 = (team1_offensive_strength - team2_offensive_strength) / 100.0
+      # shot_probability_team2 = (team2_offensive_strength - team1_offensive_strength) / 100.0
 
       # Simulate events
-      if rand < shot_probability_team1
-        match_stats[:shots][0] += 1
-        if rand < 0.7 # 70% chance of shot on target
-          match_stats[:shots_on_target][0] += 1
-        end
-      end
+      # if rand < shot_probability_team1
+      #   match_stats[:shots][0] += 1
+        # if rand < 0.7 # 70% chance of shot on target
+      #     match_stats[:shots_on_target][0] += 1
+      #   end
+      # end
 
-      if rand < shot_probability_team2
-        match_stats[:shots][1] += 1
-        if rand < 0.7 # 70% chance of shot on target
-          match_stats[:shots_on_target][1] += 1
-        end
-      end
+      # if rand < shot_probability_team2
+      #   match_stats[:shots][1] += 1
+      #   if rand < 0.7 # 70% chance of shot on target
+      #     match_stats[:shots_on_target][1] += 1
+      #   end
+      # end
 
-      if rand < foul_probability
-        fouling_team = rand < 0.5 ? 0 : 1
-        match_stats[:fouls][fouling_team] += 1
-        if rand < 0.1 # 10% chance of a yellow card
-          match_stats[:yellow_cards][fouling_team] += 1
-        end
-      end
+      # if rand < foul_probability
+      #   fouling_team = rand < 0.5 ? 0 : 1
+      #   match_stats[:fouls][fouling_team] += 1
+      #   if rand < 0.1 # 10% chance of a yellow card
+      #     match_stats[:yellow_cards][fouling_team] += 1
+      #   end
+      # end
 
       # Simulate other events (e.g., corners, offsides) in a similar manner
     end

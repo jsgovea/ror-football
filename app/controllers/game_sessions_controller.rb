@@ -33,6 +33,6 @@ class GameSessionsController < ApplicationController
 
   private
   def session_params
-    params.require(:game_session).permit(:team_id).merge(user_id: current_user.id, current_year: 2024, current_date: DateTime.now, last_time_played: DateTime.now)
+    params.require(:game_session).permit(:team_id).merge(user_id: current_user.id, current_year: 2024, current_date: DateTime.now, last_time_played: DateTime.now, week: 1)
   end
 end

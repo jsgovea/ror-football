@@ -36,20 +36,21 @@
       away_players = Player.where(team_id: match_data.first.away_team_id)
       home_team_players << home_players
       away_team_players << away_players
+      home_team_values = home_players.map { |player| player.overall }
+      away_team_values = away_players.map { |player| player.overall }
 
+      x = [home_team_values, away_team_values].transpose
+      y = [home_players.count, away_players.count]
 
+      model = LinearService.new(x, y)
+      model.train(0.1, 1000)
 
-      # Change per player.each skill
-      # team1_players = team1.players
-      # team2_players = team2.players
-
-      # Calculate the event probabilities based on player skills
-      # team1_offensive_strength = team1_players.map { |player| player.skills }.sum
-      # team2_offensive_strength = team2_players.map { |player| player.skills }.sum
+      probability_home_team_shots = model.predict(Matrix[[home_team_values.sum, away_team_values.sum]])
+      probability_away_team_shots = model.predict(Matrix[[away_team_values.sum, home_team_values.sum]])
+      puts "Home_team_wins: #{probability_home_team_shots}"
 
       # Define event probabilities for each event
       # TODO: Pass to individual event simulation functions
-      # shot_probability_team1 = (team1_offensive_strength - team2_offensive_strength) / 100.0
       # shot_probability_team2 = (team2_offensive_strength - team1_offensive_strength) / 100.0
 
       # Simulate events
